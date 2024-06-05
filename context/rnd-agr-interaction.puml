@@ -3,7 +3,6 @@
       !include https://gpxlab.ru/hml_docs/inventory.puml
 
     '  !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
-
     '  LAYOUT_LANDSCAPE()
 
     title
