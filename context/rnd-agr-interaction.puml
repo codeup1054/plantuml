@@ -1,0 +1,33 @@
+    @startuml Контекст интеграции
+
+      !include https://gpxlab.ru/hml_docs/inventory.puml
+
+    '  !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
+
+    '  LAYOUT_LANDSCAPE()
+
+    title
+      <b>Взаимодействие участников проекта НИОКР AGR v2024.06.05</b>
+
+    end title
+
+    Rel_D(AGR, TESLAB, "Договор на проведение НИОКР и передачу прав собственности на мобильное приложение")
+    Rel_D(TESLAB, MOBILE_APP_AGR, "Передача ПО")
+    Rel_D(MOBILE_APP_AGR, AGR_SPB, "Передача ПО")
+
+    Rel(AGR, TESLAB, "Договор на проведение НИОКР Е-платформа и передачу прав собственности")
+    Rel_D(TESLAB, TPLATFORM, "Передача системы T-платформа")
+    Rel_D(TPLATFORM, AGR_KALUGA, "Передача системы T-платформа")
+
+    Rel_D(AGR, TT, "Договор на проведение НИОКР и передачу прав собственности на устройство Misos")
+    Rel_D(TT, MISOS_DEVICE, "Передача устройств")
+    Rel_D(MISOS_DEVICE, AGR_SPB, "Передача устройств")
+
+    Rel_R(AGR_KALUGA, AGR_SPB, "Договор на использование AGR-mobile")
+    Rel_L(AGR_KALUGA, AGR_SPB, "Договор на присоединение к телематической системе T-платформа AGR-mobile")
+    'Rel(AGR_KALUGA
+    'Rel(AGR_SPB
+
+    remove @unlinked
+
+    @enduml
