@@ -4,7 +4,6 @@
 
     '  !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
     '  LAYOUT_LANDSCAPE()
-
     title
       <b>Взаимодействие участников проекта НИОКР AGR v2024.06.05</b>
     end title
