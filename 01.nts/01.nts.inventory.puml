@@ -1,0 +1,77 @@
+@startuml  ### [C4] Каталог сущностей платформы
+
+   !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+   !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/puml_styles.puml
+
+'   !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/puml_styles.puml
+'   !include https://gpxlab.ru/hml_docs/puml_styles.puml
+
+    skinparam linetype polyline
+    HIDE_STEREOTYPE()
+    SHOW_PERSON_PORTRAIT()
+    LAYOUT_TOP_DOWN()
+
+
+' Пользовательские Приложения
+
+
+' Системные приложения
+
+
+' Системы
+
+System_Boundary(PLATFORM_EXT, "Платформа поставщика услуг"){
+Container(SERVICE_PROVIDER_EXT, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="cogs", $tags="gold")
+Container(SERVICE_PROVIDER_CLIENTS, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
+Container(SERVICE_PROVIDER_CARS, "Каталог автомобилей", "Автопарк", "REST_API", $sprite="cogs", $tags="gold")
+Container(SERVICE_PROVIDER_GATE, "Интеграция с внешними поставщиками", "Платежи, ТО, Штрафы", "REST_API", $sprite="cogs", $tags="gold")
+Container(SERVICE_PROVIDER_DEVICES, "Каталог телематических устройств", "Блоки", "REST_API", $sprite="cogs", $tags="gold")
+Container(MOBILE_APP_EXT, "Мобильное Приложение", "Мониторинг, управленеие, сервисы", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
+
+}
+
+System_Boundary(NTS_PLATFORM, "Платформа NTS") {
+ContainerDb(NTS_CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="", $sprite="clickhouse")
+Container(NTS_API, "Интеграционная подсистема", "Шлюз для участников", "REST_API, AMQP", $tags="", $sprite="cog")
+Container(NTS_TELEMATIC_GATE, "Телематический шлюз", "Шлюз для телематических данных", "TCP, Redis", $tags="", $sprite="cog")
+Container(NTS_MANAGEMENT, "Система управления платформой", "Мониторинг и управление данными", "СУБД, web, backend", $tags="", $sprite="cogs")
+Container(NTS_CRM, "Система управления участниками", "CRM", "СУБД, web, backend", $tags="", $sprite="cogs")
+Container(NTS_BILLING, "Система учета и тарификации", "Billing", "СУБД, web, backend", $tags="", $sprite="cogs")
+Container(NTS_MOBILE, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
+}
+
+
+
+' Внешние провайдеры сервисов
+
+
+'Компании, Организации
+
+Container(GLONASS_ORG, "GLONASS", "Оператор телематических данных", "GLONASS", $sprite="electron_original", $tags="main")
+Container(MTA_DEVICE_PLANT, "Производитель", "Блоки телематики, IoT", "REST_API", $sprite="mta", $tags="external")
+Container(CAR_PLANT, "Производитель", "Автомобили", "REST_API", $sprite="car_side", $tags="external")
+Container(CAR_DEALER, "Дилер", "Сервисный центр", "REST_API", $sprite="car_side", $tags="external")
+
+' Базы данных
+
+' Пользователи приложений, клиенты
+
+' Пользователи CRM
+
+' Разработка
+
+' Шаги процесса
+
+Container(RENT_KYC, "RENT_KYC", "Проверка KYC", "", $tags="step")
+
+' Процессы
+
+System_Boundary(PAYMENT_PROCC, "Процесс оплаты") {
+Container(_CARD_LINK, "CARD_LINK", "", "", $tags="step")
+Container(_CARD_PAY, "CARD_PAY", "", "", $tags="step")
+Container(_CARD_REVERSE, "CARD_REVERSE", "", "", $tags="step")
+Container(_CARD_CHECK, "CARD_CHECK", "", "", $tags="step")
+}
+
+
+@enduml

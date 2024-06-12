@@ -24,6 +24,7 @@
 !include DEVICONS/mobile_alt.puml
 !include DEVICONS/tools.puml
 !include DEVICONS/dev.puml
+!include DEVICONS/people_group.puml
 
 !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
 
