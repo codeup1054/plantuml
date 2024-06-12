@@ -1,0 +1,261 @@
+@startuml  ### [C4] Каталог сущностей платформы
+
+   !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+   !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/puml_styles.puml
+'    !include https://gpxlab.ru/hml_docs/puml_styles.puml
+
+
+    skinparam linetype polyline
+    HIDE_STEREOTYPE()
+    SHOW_PERSON_PORTRAIT()
+    LAYOUT_TOP_DOWN()
+
+
+
+' Пользовательские Приложения
+Container(MOBIKEY_APP, "Приложение Mobikey", "Клиентское приложение", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
+Container(MOBILE_APP_AGR, "Мобильное Приложение АГР", "Мониторинг, управленеие, сервисы", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
+Container(MOBIKEY_APP_GARAGE, "Экран выбора автомобиля ", "Перечень автомобилей клиента", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
+
+Container(MOBILITY_APP, "Приложение Mobility", "Приложение Мобилити", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
+Container(MOBILITY_APP_GARAGE, "Экран выбора автомобиля ", "Каталог доступнах для аренды автомобилей", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
+
+Container(CRM_TECHNIC, "CRM Техника ", "Планшетное приложение для проверки автомобиля перед арендой", "WEB App", $sprite="chrome", $tags="external")
+
+
+' Системные приложения
+
+Container(DOCKER, "Docker", "ПО виртуализации", "dev procc", $sprite="docker", $tags="system_software")
+Container(GIT, "Gitlab", "Репозиторий программного кода", "dev procc", $sprite="gitlab", $tags="system_software")
+Container(JENKINS, "Jenkins", "ПО обеспечения процесса непрерывной интеграции", "dev proccess", $sprite="jenkins", $tags="system_software")
+
+System_Boundary(PROD_CLOUD, "Production infrastructure") {
+    ContainerDb(CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="gold", $sprite="clickhouse")
+    ContainerDb(MONGO_DB, "Mongo", "Документоориентированная СУБД", "NoSQL", $tags="mongo_green", $sprite="mongodb")
+}
+
+System_Boundary(DEV_CLOUD, "Development infrastructure") {
+    ContainerDb(CLICKHOUSE_DB_DEV, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="gold", $sprite="clickhouse")
+    ContainerDb(POSTGRESQL_DB_DEV, "PostgreSQL", Реляционная СУБД", "SQL", $tags="steel", $sprite="postgresql")
+}
+
+
+' Системы
+
+
+Container(TPLATFORM, "Телематическая система", "Сервис уравления приложением AGR-Mobile", "HTTP, NodeJS, AMQP", $sprite="cogs", $tags="main")
+
+
+Container(CRM, "CRM", "Система управления отношениями с клиентами и услугами", "Postgres, Mongo, Angular", $sprite="angular", $tags="main")
+Container(CRM_DEALER, "CRM Техника ", "Планшетное приложение для проверки автомобиля перед арендой", "WEB App", $sprite="chrome", $tags="external")
+
+System_Boundary(BACKEND_SERVICE, "Apps Backends") {
+Container_Ext(MOBIKEY_SERVICE, Mobikey BackEnd, "Сервис уравления приложением Mobikey", "HTTP, NodeJS, AMQP", $sprite="cogs", $tags="main")
+Container(CRM_SERVICE, "CRM backend сервис", "Backend CRM", "NodeJS", $sprite="cogs", $tags="main")
+}
+
+
+System_Boundary(MOBIKEY_PLATFORM, "Платформа 'Mobikey'") {
+    Container(_MOBIKEY_APP, "Приложение Mobikey", "Система управления отношениями с клиентами и услугами", "Postgres, Mongo, Angular", $sprite="mobile", $tags="main")
+    Container_Ext(_MOBIKEY_SERVICE, Mobikey BackEnd, "Сервис уравления приложением Mobikey", "HTTP, NodeJS, AMQP", $sprite="cogs", $tags="main")
+    SystemQueue(_BUS, ServiceBus, "Брокер сообщений", "RabbitMQ", $sprite="rabbitmq_original,scale=0.7")
+    Container(_REST_API, "HTTPS API", "Внешние endpoints", "", $sprite="cog", $tags="microService")
+    Container(_MICRO_SERVICES, "Микросервисы", "Миросервисы: Гараж, Сессии, Платежи, KYC и др ", "NodeJS", $sprite="cog", $tags="microService")
+    ContainerDb(_POSTGRESQL_DB, "PostgreSQL", "Реляционная СУБД", "SQL", $tags="steel", $sprite="postgresql")
+    ContainerDb(_CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="gold", $sprite="clickhouse")
+    ContainerDb(_MONGO_DB, "Mongo", "Документоориентированная СУБД", "NoSQL", $tags="mongo_green", $sprite="mongodb")
+}
+
+' Платформа системы оператора
+
+System_Boundary(OPERATOR_PLATFORM, "Платформа оператора") {
+Container(OP_STARAGE, "Система хранения данных", "s3, СУБД", $sprite="cogs", $tags="ftp")
+Container(OP_ADMIN_WEB_APP, "Система управления оператора", "HTTP, NodeJS, AMQP", $sprite="cogs", $tags="ftp")
+Container(OP_API_GATEWAY, "Интеграционная платформа", "REST_API, AMQP", $sprite="cogs", $tags="ftp")
+}
+
+' Внутренние сервисы платформы
+
+System_Boundary(PLATFORM, "Сервисы платформы ") {
+SystemQueue(BUS, ServiceBus, "Брокер сообщений, RabbitMQ",$tags="rabbitmq_original")
+Container(FTP, "FTP сервер", "FTP", $sprite="cogs", $tags="ftp")
+Container(AUTH_SERVICE, "Сервис авторизации", "HID adapter", $sprite="cogs", $tags="microService")
+Container(REST_API, "HTTPS API", "Внешние endpoints", "", $sprite="cog", $tags="microService")
+Container(MICRO_SERVICES, "Микросервисы", "Миросервисы: Гараж, Сессии, Платежи, KYC и др ", "NodeJS", $sprite="cogs", $tags="microService")
+Container(GARAGE_SERVICE, "GARAGE_SERVICE", "Сервис управления каталогом автомобилей", "Postgres, NodeJS", $sprite="cogs", $tags="microService")
+Container(VEHICLES_SERVICE, "VEHICLES_SERVICE", "Сервис управления каталогом автомобилей", "Postgres, NodeJS", $sprite="cogs", $tags="microService")
+Container(MASTER_USER_SERVICE, "Клиентский сервис", "Сервис управления клиентами", "Postgres, NodeJS", $sprite="cogs", $tags="microService")
+Container(KYC_SERVICE, "KYC Сервис", "Сервис обработки пользовательских данных", "NodeJS, AMQP", $sprite="cogs", $tags="microService")
+Container(VEHICLE_MAINTENANCE_SERVICE, "VEHICLE_MAINTENANCE_SERVICE", "Сервис записи на ТО", "Postgres, NodeJS", $sprite="cogs", $tags="microService")
+Container(VEHICLE_MAINTENANCE_SERVICE, "Запись к Дилеру", "Система управления записью на ремонт и ТО", "REST_API", $sprite="cogs", $tags="microService")
+
+Container(DOC_SERVICE, "DOC Сервис", "Сервис генерации и хранения документов", "NodeJS, AMQP", $sprite="cog", $tags="microService")
+Container(INTEGRATION_SERVICE, "Сервис интеграции", "Сервис интеграции HTTP -> AMQP с ролевой моделью доступа", "HTTP, NodeJS, AMQP", $sprite="cogs", $tags="microService")
+Container(LOG_SERVICE, "ELK", "Система логгирования запросов", "HTTP, NodeJS, AMQP,File", $sprite="cogs", $tags="gold")
+Container(FINE_SERVICE, Сервис управления штрафами, "Запрос  штрафов, форомирование начислений", "AMQP", $sprite="cog", $tags="microService")
+Container(FILE_SERVICE, Сервис хранения файлов, "Сервис хранения файлов", "http, ftp", $sprite="cog", $tags="microService")
+Container(FILE_SERVER, Файлый архив, "Сервер хранения файлов", "http, ftp", $sprite="cog", $tags="gold")
+Container(PAYMENT_SERVICE, Сервис оплаты, "Оплата начислений, привязка карт", "AMQP", $sprite="wallet", $tags="microService")
+Container(CONNECTION_GATE_SERVICE, Сервис интеграции Connection Gate, "Сервис для управления доступом при внешних интеграциях ", "HTTP, NodeJS, AMQP", $sprite="cog", $tags="microService")
+Container(NOTIFICATION_SERVICE, Сервис оповещений, "Сервис для управления рассылками", "push, e-mail", $sprite="cog", $tags="microService")
+}
+
+' Внешние сервисы
+
+Container(HID, "Hyundai ID", "Сервис регистрации и аутентификации", "", $sprite="cog", $tags="external")
+Container(ID20, "Сервис штрафов ID20", "Предоставление информации о штрафах и фотографий", "", $sprite="cog", $tags="external")
+Container(SMS_SERVICE, "SMS сервис", "Отправка СМС с кодами и оповещениями", "HTTP", $sprite="cog", $tags="external")
+Container(DADATA_SERVICE, Сервис подсказок DaData, 'Предоставление данных из справочников в форматированном виде', REST_API, $sprite="cog", $tags="external" )
+Container(CKAD_AUTODOR, "Автодор ЦКАД", "Сервис предоставления начислений о проезде по платным автодорогам", "HTTP", $sprite="cog", $tags="external")
+Container(KYC_PROVIDER, "Провайдер скоринга клиентов", "OCR документов, KYC, подтверждение рейтинга клиента", "REST_API", $sprite="cogs", $tags="external")
+Container(WA_PROVIDER, "Work Shop automation", "Система управления ремонтом и техническим обслуживанием", "REST_API", $sprite="cogs", $tags="external")
+Container(MIR_HYUNDAI, "Мир Hyundai", "", "REST_API", $sprite="cogs", $tags="external")
+Container(CKAD_AUTODOR, Автодор ЦКАД, 'Сервис предоставления начислений о проезде по платным автодорогам', HTTP, $sprite="cog", $tags="external" )
+Container(CANLOG, "CANLOG", "HTTP", $sprite="cogs", $tags="external")
+Container(SAT_GPS, "Спутник GPS", "GPS", $sprite="electron_original", $tags="external")
+Container(SAT_GLONASS, "Спутник GLONASS", "GLONASS", $sprite="electron_original", $tags="external")
+Container(MOBILE_OPERATOR, "Оператор подвижной связи", "GPRS", $sprite="tower_broadcast", $tags="external")
+Container(INTERNET, "Сеть интернет", "TCP/IP", $sprite="electron_original", $tags="external")
+Container(DEALERS_PORTAL, "Дилерский портал", "Сервис диллеров TES", "NodeJS, AMQP", $sprite="cogs", $tags="external")
+Container(CRM_DEALER_EXT, "CRM Дилера", "CRM дилера", "REST_API", $sprite="cogs", $tags="external")
+
+' Поставщиик услуг
+
+
+System_Boundary(PLATFORM_EXT, "Платформа поставщика услуг"){
+Container(SERVICE_PROVIDER_EXT, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="cogs", $tags="gold")
+Container(SERVICE_PROVIDER_CLIENTS, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="cogs", $tags="critical")
+Container(SERVICE_PROVIDER_CARS, "Каталог автомобилей", "Автопарк", "REST_API", $sprite="cogs", $tags="gold")
+Container(SERVICE_PROVIDER_GATE, "Интеграция с внешними поставщиками", "Платежи, ТО, Штрафы", "REST_API", $sprite="cogs", $tags="gold")
+Container(SERVICE_PROVIDER_DEVICES, "Каталог телематических устройств", "Блоки", "REST_API", $sprite="cogs", $tags="gold")
+Container(MOBILE_APP_EXT, "Мобильное Приложение", "Мониторинг, управленеие, сервисы", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
+
+}
+
+
+
+System_Boundary(NTS_PLATFORM, "Платформа NTS") {
+ContainerDb(NTS_CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="", $sprite="clickhouse")
+Container(NTS_API, "Интеграционная подсистема", "Шлюз для участников", "REST_API, AMQP", $tags="", $sprite="cog")
+Container(NTS_TELEMATIC_GATE, "Телематический шлюз", "Шлюз для телематических данных", "TCP, Redis", $tags="", $sprite="cog")
+Container(NTS_MANAGEMENT, "Система управления платформой", "Мониторинг и управление данными", "СУБД, web, backend", $tags="", $sprite="cogs")
+Container(NTS_CRM, "Система управления участниками", "CRM", "СУБД, web, backend", $tags="", $sprite="cogs")
+Container(NTS_BILLING, "Система учета и тарификации", "Billing", "СУБД, web, backend", $tags="", $sprite="cogs")
+Container(NTS_MOBILE, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
+}
+
+
+
+' Внешние провайдеры сервисов
+
+Container(INSURANCE_COMPANY, "Страховая компания", "Страховая компания ", "REST_API", $sprite="org", $tags="external")
+Container(BANK, "Банк эквайер ", "Сервис оплаты картами", "REST_API", $sprite="org", $tags="external")
+
+
+'Компании, Организации
+
+Container(AGR, "AGR Automotive Group", "Продажа и дистрибуция автомобилей и запасных частей", "REST_API", $sprite="org", $tags="external")
+Container(AGR_KALUGA, "AGR Kaluga", "Производство автомобилей и запасных частей", "REST_API", $sprite="tools", $tags="external")
+Container(AGR_SPB, "AGR SPB", "Производство автомобилей и запасных частей", "Solaris", $sprite="tools", $tags="external")
+Container(TT, "ТриТочки ", "Поставщик телематического оборудования", "MiSos", $sprite="tools", $tags="main")
+Container(TESLAB, "TES Lab", "Разработчик IT решений для телематических сервисов", "TES.Store", $sprite="dev", $tags="main")
+
+Container(GLONASS_ORG, "GLONASS", "Оператор телематических данных", "GLONASS", $sprite="electron_original", $tags="main")
+
+Container(MTA_DEVICE_PLANT, "Производитель", "Блоки телематики, IoT", "REST_API", $sprite="mta", $tags="external")
+Container(CAR_PLANT, "Производитель", "Автомобили", "REST_API", $sprite="car_side", $tags="external")
+Container(CAR_DEALER, "Дилер", "Сервисный центр", "REST_API", $sprite="car_side", $tags="external")
+
+
+' Базы данных
+
+ContainerDb(POSTGRESQL_DB, "PostgreSQL", "Реляционная СУБД", "SQL", $tags="steel", $sprite="postgresql")
+ContainerDb(CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="gold", $sprite="clickhouse")
+ContainerDb(MONGO_DB, "Mongo", "Документоориентированная СУБД", "NoSQL", $tags="mongo_green", $sprite="mongodb")
+ContainerDb(REDIS_DB, "Redis", "Резидентная СУБД", "NoSQL", $sprite="redis", $sprite="car")
+
+
+' Пользователи приложений, клиенты
+
+Person(CLIENT, "Пользователь мобильного приложения", "Mobile App (Android,iOS)", $tags="violet")
+Person(CLIENT_MOBIKEY, "Клиент сервиса Mobikey", "Mobile App (Android,iOS)", $tags="violet")
+Person(CLIENT_MOBILITY, "Клиент сервиса Mobility", "Mobile App (Android,iOS)", $tags="violet")
+
+' Пользователи CRM
+
+Person(CRM_TECHNICIAN, "TECHNICIAN", "Техник ДЦ", $tags="external")
+Person(CRM_MANAGER_MOBILITY, "Manager Mobility", "Сотрудник отдела Мобилити", $tags="steel")
+Person(CRM_MANAGER, "CRM роль MANAGER", "Менеджер оператора платформы", $tags="steel")
+Person(CRM_VEHICLE_EDIT, "VEHICLE_EDIT", "Редактирование автомобилей", $tags="steel")
+
+' Разработка
+
+Person(FRONT_DEVELOPER, "Фронт разработчик", "Angular", $tags="seagreen")
+Person(FRONT_DEVELOPER_LEAD, "Фронт разработчик Lead", "Angular", $tags="seagreen")
+
+
+Person(MOBILY_DEVELOPER, "Разработчик мобильных приложений", "ReactNative, iOS, Android", $tags="seagreen")
+Person(BACKEND_DEVELOPER, "Бэкенд разработчик", "NodeJS, СУБД", $tags="seagreen")
+Person(DEVOPS, "DevOps, SRE инженер", "Clouds, DevFlow", $tags="seagreen")
+Person(DESIGNER, "Дизайнер", "Figma", $tags="seagreen")
+
+' Шаги процесса
+
+Container(RENT_KYC, "RENT_KYC", "Проверка KYC", "", $tags="step")
+Container(RENT_CHOOSE_CAR, "RENT_CHOOSE_CAR", "Выбор в приложении", "", $tags="step")
+Container(RENT_ACCEPT_BOOKING, "RENT_ACCEPT_BOOKING", "Подтверждение брони", "", $tags="step")
+Container(RENT_PAYMENT, "RENT_PAYMENT", "Оплата ", "", $tags="step")
+Container(RENT_DELIVERY, "RENT_DELIVERY", "Ожидание доставки ", "", $tags="step")
+Container(RENT_START, "RENT_START", "Начало аренды", "", $tags="step")
+Container(RENT_END, "RENT_END", "Завершение аренды", "", $tags="step")
+Container(RENT_END_SESSION, "RENT_END_SESSION", "Завершение cсессии", "", $tags="step")
+Container(CARD_LINK, "CARD_LINK", "", "", $tags="step")
+Container(CARD_PAY, "CARD_PAY", "", "", $tags="step")
+Container(CARD_REVERSE, "CARD_REVERSE", "", "", $tags="step")
+Container(CARD_CHECK, "CARD_CHECK", "", "", $tags="step")
+
+
+' Процессы
+
+System_Boundary(PAYMENT_PROCC, "Процесс оплаты") {
+Container(_CARD_LINK, "CARD_LINK", "", "", $tags="step")
+Container(_CARD_PAY, "CARD_PAY", "", "", $tags="step")
+Container(_CARD_REVERSE, "CARD_REVERSE", "", "", $tags="step")
+Container(_CARD_CHECK, "CARD_CHECK", "", "", $tags="step")
+}
+
+
+!startsub mta
+    System_Boundary(MTA_SYSTEM, "Телематический сервис") {
+    Container(MTA_SERVICE, "Сервис взаимодействия с блоками телематики", "NodeJS, ClickHouse, Redis", "",  $sprite="cogs", $tags="microService")
+    Container(MTA_TCP_SERVICE, "Сервис обработки телематических данных", "TCP, Redis", "",  $sprite="cogs", $tags="mta")
+
+    }
+
+'    Rel_U(MTA_DEVICE, MTA_SERVICE, "")
+'    Rel_U(CAR_MTA,MTA_DEVICE, "")
+
+!endsub
+
+!startsub car
+' Автомобиль
+
+    Container(CAR_MTA, "Автомобиль", "Оборудован телематическим блоком", "", $tags="car_side", $sprite="car_side")
+    Container(MTA_DEVICE, "Блок телематики", "GPS,TCP,GPRS", "",  $sprite="mta", $tags="mta")
+
+    Container(MISOS_DEVICE, "Блок телематики", "GPS,TCP,GPRS", "",  $sprite="mta", $tags="mta")
+
+    System_Boundary(DIGITAL_CAR, "Цифровой автомобиль") {
+    Container(_MTA_DEVICE, "Блок телематики", "GPS,TCP,GPRS", "",  $sprite="mta", $tags="mta")
+    Container(_CAR_MTA, "Автомобиль", "Оборудован телематическим блоком", "", $tags="car_side", $sprite="car_side")
+    }
+
+!endsub
+
+!startsub extranet
+  Container(db_b, "Database B","Postgresql")
+!endsub
+
+
+
+@enduml

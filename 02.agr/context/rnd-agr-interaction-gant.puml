@@ -1,0 +1,28 @@
+@startgantt
+Project starts on 2023-08-15
+[Task 1] as [T1] lasts 5 days
+[T1] is colored in LightBlue
+note bottom
+  Important Task
+end note
+
+@endgantt
+
+@startgantt
+Project starts on 2023-08-15
+[T1] lasts 5 days
+[T2] lasts 3 days and is 10% completed
+[T3] lasts 7 days and is 50% completed
+@endgantt
+
+
+@startgantt
+Project starts 2023-08-15
+[Task 1] lasts 5 days
+[Task 2] lasts 7 days and is 30% completed
+[Task 3] lasts 4 days
+[Task 4] lasts 6 days
+[Task 2] starts at [Task 1]'s end
+[Task 3] starts at [Task 2]'s end
+[Task 4] starts at [Task 3]'s end
+@endgantt

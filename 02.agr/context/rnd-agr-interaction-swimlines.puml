@@ -1,0 +1,56 @@
+@startuml
+
+'https://www.webdevtutor.net/blog/comprehensive-guide-plantuml-activity-diagrams
+
+|Три Точки|
+:Договор на НИОКР Misos;
+|АГР Дистрибьютор|
+
+
+|Тес Лаб|
+:Договор на НИОКР T-platform;
+|АГР Дистрибьютор|
+
+
+
+:Договор на НИОКР Misos;
+|АГР Дистрибьютор|
+
+|Завод СПб|
+|Завод Калуга|
+
+@enduml
+
+
+
+@startuml
+
+|AGR|
+start
+|#AntiqueWhite|Тес Лаб|
+fork
+:Договор AGR-Mobile;
+
+|AGR|
+
+fork again
+|Три Точки|
+
+:Договор НИОКР Misos;
+|AGR|
+end fork
+
+|AGR|
+:Передача прав;
+|Завод Калуга|
+'start
+:Настройка Cloud;
+stop
+
+|Завод СПБ|
+:Подключение МП;
+|Завод Калуга|
+
+stop
+
+@enduml

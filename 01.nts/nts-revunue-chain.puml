@@ -1,0 +1,19 @@
+@startuml
+title Цепочка добавленной стоимости для сервисов\nв зависимости от уровня предоставления сервиса в у.е.
+
+start
+    if (Хранение ТД)
+        :1;
+    else if (Реестр ТМ блоков,\nТС, IoT устройств  и т.д.)
+        :+3;
+   #lightgreen:  else if (Сервис провайдеры)
+   #lightgreen:  +5-10;
+   #pink: else if (ПД)
+   #pink:+10;
+   else (all inclusive)
+   #gold: пакет 18;
+    endif
+: Клиент/Потребитель;
+stop
+
+@enduml

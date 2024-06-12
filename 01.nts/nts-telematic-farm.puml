@@ -1,0 +1,43 @@
+    @startuml Контекст интеграции
+
+' !include https://gpxlab.ru/hml_docs/inventory.puml
+  !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
+'  LAYOUT_LANDSCAPE()
+
+    title
+      <b>Организация хранениея и управления ТД v2024.06.11</b>
+    end title
+
+' НТС
+
+    Rel_R(GLONASS_ORG, TESLAB, "01. Договор на проведение НИОКР, разработку и передачу РИД")
+    Rel_R(GLONASS_ORG, TESLAB, "02. Договоры на развитие платформы, сопровождение и техническую поддержку ")
+    Rel(GLONASS_ORG, NTS_CRM, "03. Управление участниками")
+    Rel_D(GLONASS_ORG, NTS_MANAGEMENT, "04. Управление платформой")
+    Rel_L(NTS_MANAGEMENT, NTS_CRM,  "Управление доступом")
+    Rel_L(NTS_MANAGEMENT, NTS_MOBILE,  "Учёт SIM-card")
+    Rel_D(NTS_MOBILE, MTA_DEVICE_PLANT,  "Выдача SIM-card")
+
+'  Поставщик услуг
+
+    Rel_U(SERVICE_PROVIDER_EXT, NTS_MANAGEMENT,  "Передача device_id", "API")
+    Rel_U(SERVICE_PROVIDER_EXT, NTS_CRM,  "05.Присоединение участника, отчеты", "API")
+    Rel_L(SERVICE_PROVIDER_EXT, MOBILE_APP_EXT, "Сервисы")
+    Rel_D(SERVICE_PROVIDER_EXT, SERVICE_PROVIDER_DEVICES, "Device_id")
+    BiRel_U(SERVICE_PROVIDER_GATE, SERVICE_PROVIDER_EXT, "service dataflow")
+    Rel_D(SERVICE_PROVIDER_DEVICES, SERVICE_PROVIDER_CARS, "привязка VIN-Device_id")
+    Rel_L(SERVICE_PROVIDER_CARS, SERVICE_PROVIDER_CLIENTS, "привязка VIN-Client")
+
+
+    Rel_U(MTA_DEVICE, NTS_TELEMATIC_GATE, "raw telematic data", "device_id")
+    Rel_R(NTS_TELEMATIC_GATE, NTS_MANAGEMENT, "telematic data", "device_id, data")
+
+    Rel_U(SERVICE_PROVIDER_DEVICES, MTA_DEVICE , "управление", "настройка блока")
+    Rel_L(MTA_DEVICE_PLANT, MTA_DEVICE , "API", "настройка шлюза NTS")
+    Rel_L(CAR_PLANT, SERVICE_PROVIDER_CARS, "API", "связь VIN и device_id")
+    Rel_L(CAR_DEALER, SERVICE_PROVIDER_DEVICES, "API", "связь VIN и device_id ")
+
+
+    remove @unlinked
+
+    @enduml
