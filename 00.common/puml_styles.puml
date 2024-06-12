@@ -1,7 +1,4 @@
-'!define DEVICONS https://gpxlab.ru/hml_docs/icons
-'!define DEVICONS icons
 !define DEVICONS https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/icons
-'!define DEVICONS https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/icons
 
 !include DEVICONS/rabbitmq_original.puml
 !include DEVICONS/cogs.puml
@@ -25,6 +22,7 @@
 !include DEVICONS/tools.puml
 !include DEVICONS/dev.puml
 !include DEVICONS/people_group.puml
+!include DEVICONS/calculator.puml
 
 !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
 
