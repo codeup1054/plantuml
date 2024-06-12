@@ -18,15 +18,6 @@
 
 ' Системы
 
-System_Boundary(PLATFORM_EXT, "Платформа поставщика услуг"){
-Container(SERVICE_PROVIDER_EXT, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
-Container(SERVICE_PROVIDER_CLIENTS, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
-Container(SERVICE_PROVIDER_CARS, "Каталог автомобилей", "Автопарк", "REST_API", $sprite="cogs", $tags="gold")
-Container(SERVICE_PROVIDER_GATE, "Интеграция с внешними поставщиками", "Платежи, ТО, Штрафы", "REST_API", $sprite="cogs", $tags="gold")
-Container(SERVICE_PROVIDER_DEVICES, "Каталог телематических устройств", "Блоки", "REST_API", $sprite="cogs", $tags="gold")
-Container(MOBILE_APP_EXT, "Мобильное Приложение", "Мониторинг, управленеие, сервисы", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
-}
-
 System_Boundary(NTS_PLATFORM, "Платформа NTS") {
 ContainerDb(NTS_CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="", $sprite="clickhouse")
 Container(NTS_API, "Интеграционная подсистема", "Шлюз для участников", "REST_API, AMQP", $tags="", $sprite="cog")

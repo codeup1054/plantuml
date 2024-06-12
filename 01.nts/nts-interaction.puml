@@ -1,6 +1,5 @@
     @startuml Контекст интеграции
 
-' !include https://gpxlab.ru/hml_docs/inventory.puml
 ' !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
 
   !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/inventory.puml
