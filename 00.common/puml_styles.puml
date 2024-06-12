@@ -1,6 +1,7 @@
 '!define DEVICONS https://gpxlab.ru/hml_docs/icons
 '!define DEVICONS icons
-!define DEVICONS https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/icons
+!define DEVICONS https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/icons
+'!define DEVICONS https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/icons
 
 !include DEVICONS/rabbitmq_original.puml
 !include DEVICONS/cogs.puml
