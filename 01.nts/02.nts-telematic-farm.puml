@@ -30,7 +30,7 @@ LAYOUT_TOP_DOWN()
     Rel_D(NTS_1_TELEMATIC_GATE, MTA_DEVICE_PLANT, "TD, CMD", "пакеты TD, команды", "TCP, Redis", $tags="", $sprite="cog")
     Rel_D(NTS_1_CRM,              MTA_DEVICE_PLANT , "Управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
     Rel_D(NTS_1_BILLING,          MTA_DEVICE_PLANT , "Начисления", "биллинговая информация", "REST_API", $sprite="calculator", $tags="gold")
-    Rel_D(NTS_1_MARKETPLACE,      MTA_DEVICE_PLANT  , "Данные для управления услугами", "REST_API", $sprite="cogs", $tags="gold")
+    Rel_D(NTS_1_MARKETPLACE,      MTA_DEVICE_PLANT  , "Данные для управления услугами", "REST_API", $sprite="owm_761", $tags="gold")
 
 '  Поставщик услуг
 
