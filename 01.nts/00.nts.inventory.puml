@@ -9,7 +9,7 @@
     skinparam linetype polyline
     HIDE_STEREOTYPE()
     SHOW_PERSON_PORTRAIT()
-'    LAYOUT_TOP_DOWN()
+    LAYOUT_TOP_DOWN()
 
 ' Пользовательские Приложения
 
