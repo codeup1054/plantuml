@@ -27,7 +27,7 @@ Container(NTS_CRM, "Система управления участниками",
 Container(NTS_BILLING, "Система учета и тарификации", "Billing", "СУБД, web, backend", $tags="", $sprite="calculator")
 Container(NTS_MOBILE, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
 
-    System_Boundary(NTS_FARM_INSTANCE_1, "NTS Instance 01") {
+    System_Boundary(NTS_FARM_INSTANCE_1, "NTS Instance 01", $tags=GroupBackgroundColor:gold") {
     Container(NTS_1_TELEMATIC_GATE, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cog")
     Container(NTS_1_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
     Container(NTS_1_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")

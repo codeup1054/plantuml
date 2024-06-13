@@ -5,33 +5,34 @@
  !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/inventory.puml
  !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/01.nts/00.nts.inventory.puml
 
+HIDE_STEREOTYPE()
 
 '  LAYOUT_LANDSCAPE()
- LAYOUT_TOP_DOWN()
+LAYOUT_TOP_DOWN()
 
     title
-      <b>Организация хранениея и управления ТД v2024.06.11</b>
+      Организация экземпляров TP для участников
+      v2024.06.11
     end title
 
 ' НТС
 
-    Rel(GLONASS_ORG, NTS_CRM, "03. Управление участниками")
-    Rel_D(GLONASS_ORG, NTS_PLATFORM_MANAGEMENT, "04. Управление платформой")
-    Rel_L(NTS_MANAGEMENT, NTS_CRM,  "Управление доступом")
-    Rel_L(NTS_MANAGEMENT, NTS_MOBILE,  "Учёт SIM-card")
+    Rel_D(GLONASS_ORG, NTS_PLATFORM, "01. Управление платформой")
 
+    Rel_L(NTS_CRM, NTS_PLATFORM_MANAGEMENT, "02.Конфигрураця экземпляра")
+    Rel_R(NTS_CRM, NTS_BILLING,  "03. Начисления, платежи")
 
+    Rel_D(NTS_PLATFORM_MANAGEMENT, NTS_FARM_INSTANCE_1,  "Управление экземпляром'")
+    Rel_D(NTS_PLATFORM_MANAGEMENT, NTS_FARM_INSTANCE_2,  "Управление экземпляром")
 
-    Rel(NTS_1_TELEMATIC_GATE, MTA_DEVICE_PLANT, "-TD, CMD", "Телематический сервис, TD, команды", "TCP, Redis", $tags="", $sprite="cog")
-    Rel(NTS_1_CRM,              MTA_DEVICE_PLANT , "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
-    Rel(NTS_1_BILLING,          MTA_DEVICE_PLANT , "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
-    Rel(NTS_1_MARKETPLACE,      MTA_DEVICE_PLANT  , "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
+    Rel_D(NTS_2_TELEMATIC_GATE,  MTA_DEVICE_PLANT_2, "TD, CMD", "пакеты TD, команды", "TCP, Redis", $tags="", $sprite="cog")
 
-    Rel(NTS_2_TELEMATIC_GATE,  MTA_DEVICE_PLANT_2, "-TD, CMD", "Телематический сервис, TD, команды", "TCP, Redis", $tags="", $sprite="cog")
-    Rel(NTS_2_CRM,              MTA_DEVICE_PLANT_2 , "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
+    Rel_D(NTS_1_TELEMATIC_GATE, MTA_DEVICE_PLANT, "TD, CMD", "пакеты TD, команды", "TCP, Redis", $tags="", $sprite="cog")
+    Rel_D(NTS_1_CRM,              MTA_DEVICE_PLANT , "Управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
+    Rel_D(NTS_1_BILLING,          MTA_DEVICE_PLANT , "Начисления", "биллинговая информация", "REST_API", $sprite="calculator", $tags="gold")
+    Rel_D(NTS_1_MARKETPLACE,      MTA_DEVICE_PLANT  , "Данные для управления услугами", "REST_API", $sprite="cogs", $tags="gold")
 
 '  Поставщик услуг
-
 
     remove @unlinked
 

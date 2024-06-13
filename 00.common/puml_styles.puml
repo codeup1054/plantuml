@@ -23,6 +23,8 @@
 !include DEVICONS/dev.puml
 !include DEVICONS/people_group.puml
 !include DEVICONS/calculator.puml
+!include DEVICONS/input.puml
+!include DEVICONS/owm_761.puml
 
 !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
 

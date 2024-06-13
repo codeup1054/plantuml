@@ -3,6 +3,7 @@
 ' !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
 
   !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/inventory.puml
+  !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/01.nts/00.nts.inventory.puml
 '  LAYOUT_LANDSCAPE()
 
     title
