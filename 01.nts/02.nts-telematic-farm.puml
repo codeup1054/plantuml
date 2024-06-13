@@ -7,6 +7,7 @@
 
 
 '  LAYOUT_LANDSCAPE()
+ LAYOUT_TOP_DOWN()
 
     title
       <b>Организация хранениея и управления ТД v2024.06.11</b>
@@ -15,7 +16,7 @@
 ' НТС
 
     Rel(GLONASS_ORG, NTS_CRM, "03. Управление участниками")
-    Rel_D(GLONASS_ORG, NTS_MANAGEMENT, "04. Управление платформой")
+    Rel_D(GLONASS_ORG, NTS_PLATFORM_MANAGEMENT, "04. Управление платформой")
     Rel_L(NTS_MANAGEMENT, NTS_CRM,  "Управление доступом")
     Rel_L(NTS_MANAGEMENT, NTS_MOBILE,  "Учёт SIM-card")
 
@@ -26,10 +27,8 @@
     Rel(NTS_1_BILLING,          MTA_DEVICE_PLANT , "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
     Rel(NTS_1_MARKETPLACE,      MTA_DEVICE_PLANT  , "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
 
-    Rel(NTS_2_TELEMATIC_GATE,  MTA_DEVICE_PLANT, "-TD, CMD", "Телематический сервис, TD, команды", "TCP, Redis", $tags="", $sprite="cog")
-    Rel(NTS_2_CRM,              MTA_DEVICE_PLANT , "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
-    Rel(NTS_2_BILLING,          MTA_DEVICE_PLANT , "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
-    Rel(NTS_2_MARKETPLACE,      MTA_DEVICE_PLANT  , "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
+    Rel(NTS_2_TELEMATIC_GATE,  MTA_DEVICE_PLANT_2, "-TD, CMD", "Телематический сервис, TD, команды", "TCP, Redis", $tags="", $sprite="cog")
+    Rel(NTS_2_CRM,              MTA_DEVICE_PLANT_2 , "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
 
 '  Поставщик услуг
 

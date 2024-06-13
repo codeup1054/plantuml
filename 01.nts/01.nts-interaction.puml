@@ -14,7 +14,7 @@
     Rel_R(GLONASS_ORG, TESLAB, "01. Договор на проведение НИОКР, разработку и передачу РИД")
     Rel_R(GLONASS_ORG, TESLAB, "02. Договоры на развитие платформы, сопровождение и техническую поддержку ")
     Rel(GLONASS_ORG, NTS_CRM, "03. Управление участниками")
-    Rel_D(GLONASS_ORG, NTS_MANAGEMENT, "04. Управление платформой")
+    Rel_D(GLONASS_ORG, NTS_PLATFORM_MANAGEMENT, "04. Управление платформой")
     Rel_L(NTS_MANAGEMENT, NTS_CRM,  "Управление доступом")
     Rel_L(NTS_MANAGEMENT, NTS_MOBILE,  "Учёт SIM-card")
     Rel_D(NTS_MOBILE, MTA_DEVICE_PLANT,  "Выдача SIM-card")
