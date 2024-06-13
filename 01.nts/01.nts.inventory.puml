@@ -7,7 +7,7 @@
 '   !include https://gpxlab.ru/hml_docs/puml_styles.puml
 
     skinparam linetype polyline
-'    HIDE_STEREOTYPE()
+    HIDE_STEREOTYPE()
     SHOW_PERSON_PORTRAIT()
 '    LAYOUT_TOP_DOWN()
 
@@ -26,7 +26,24 @@ Container(NTS_MANAGEMENT, "Система управления платформ�
 Container(NTS_CRM, "Система управления участниками", "CRM", "СУБД, web, backend", $tags="", $sprite="cogs")
 Container(NTS_BILLING, "Система учета и тарификации", "Billing", "СУБД, web, backend", $tags="", $sprite="calculator")
 Container(NTS_MOBILE, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
+
+    System_Boundary(NTS_FARM_INSTANCE_1, "NTS Instance 01") {
+    Container(NTS_1_TELEMATIC_GATE_1, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cog")
+    Container(NTS_1_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
+    Container(NTS_1_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
+    Container(NTS_1_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
+    }
 }
+
+
+
+System_Boundary(TDO_1, "TDO Участник 1") {
+    Container(TDO_1_TELEMATIC_GATE_1, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cog")
+    Container(TDO_1_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
+    Container(TDO_1_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
+    Container(TDO_1_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
+}
+
 
 
 
