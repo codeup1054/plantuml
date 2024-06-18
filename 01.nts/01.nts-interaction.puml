@@ -1,4 +1,4 @@
-    @startuml Контекст интеграции
+@startuml Контекст интеграции
 
 ' !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
 

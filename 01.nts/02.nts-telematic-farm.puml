@@ -15,7 +15,7 @@ LAYOUT_TOP_DOWN()
       v2024.06.11
     end title
 
-' НТС
+' НТС farm
 
     Rel_D(GLONASS_ORG, NTS_PLATFORM, "01. Управление платформой")
 
