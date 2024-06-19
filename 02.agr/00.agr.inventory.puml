@@ -69,13 +69,9 @@ Container(CAR_PLANT, "Производитель", "Автомобили", "REST
 Container(CAR_DEALER, "Дилер", "Сервисный центр", "REST_API", $sprite="car_side", $tags="external")
 
 ' Базы данных
-
 ' Пользователи приложений, клиенты
-
 ' Пользователи CRM
-
 ' Разработка
-
 ' Шаги процесса
 
 'Container(RENT_KYC, "RENT_KYC", "Проверка KYC", "", $tags="step")
