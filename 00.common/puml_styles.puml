@@ -26,6 +26,8 @@
 !include DEVICONS/input.puml
 !include DEVICONS/owm_761.puml
 !include DEVICONS/microchip.puml
+!include DEVICONS/git_alt.puml
+!include DEVICONS/server.puml
 
 !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
 

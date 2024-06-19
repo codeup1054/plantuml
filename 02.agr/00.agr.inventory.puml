@@ -76,6 +76,7 @@ Container(CAR_DEALER, "Дилер", "Сервисный центр", "REST_API",
 ' Программное обеспечение
 
 
+
 System_Boundary(MISOS, "Телематический блок MISOS DC") {
 Container(MISOS_DC_SOFT, "Misos DC Software", "", "StdPeriphLib/STM32Cube",$sprite="cog",$tags="step")
 Container(MISOS_DC_GPS_MODULE, "Модуль спутниковой навигации", "", $sprite="electron_original", $tags="step")
