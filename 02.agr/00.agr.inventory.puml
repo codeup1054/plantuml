@@ -73,9 +73,6 @@ Container(CAR_DEALER, "Дилер", "Сервисный центр", "REST_API",
 ' Пользователи CRM
 ' Разработка
 ' Шаги процесса
-
-'Container(RENT_KYC, "RENT_KYC", "Проверка KYC", "", $tags="step")
-
 ' Программное обеспечение
 
 System_Boundary(MISOS, "Телематический блок MISOS DC") {
