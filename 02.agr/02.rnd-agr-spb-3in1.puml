@@ -1,31 +1,32 @@
-    @startuml Контекст интеграции
+@startuml Контекст интеграции
 
 '      !include https://gpxlab.ru/hml_docs/inventory.puml
-
 '      !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
+
   !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/inventory.puml
   !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/01.nts/00.nts.inventory.puml
+
     '  LAYOUT_LANDSCAPE()
+
     title
-      <b>Взаимодействие участников проекта НИОКР AGR v2024.06.05</b>
+      <b>Взаимодействие участников проекта НИОКР AGR v2024.06.15</b>
     end title
 
     Rel_D(AGR, TESLAB, "Договор на проведение НИОКР и передачу прав собственности на мобильное приложение")
-    Rel_D(TESLAB, MOBILE_APP_AGR, "Передача ПО")
-    Rel_D(MOBILE_APP_AGR, AGR_SPB, "Передача ПО")
+    Rel_D(TESLAB, MOBILE_APP_AGR, "Разработка МП")
+    Rel_D(TESLAB, MISOS_DEVICE, "Разработка ПО TMU")
+    Rel_D(MOBILE_APP_AGR, AGR_SPB, "Передача МП")
 
     Rel(AGR, TESLAB, "Договор на проведение НИОКР Е-платформа и передачу прав собственности")
-    Rel_D(TESLAB, TPLATFORM, "Передача системы T-платформа")
-    Rel_D(TPLATFORM, AGR_KALUGA, "Передача системы T-платформа")
+    Rel_D(TESLAB, TPLATFORM, "Разработка T-платформа")
+    Rel_D(TPLATFORM, AGR_SPB, "Передача системы T-платформа")
 
     Rel_D(AGR, TT, "Договор на проведение НИОКР и передачу прав собственности на устройство Misos")
-    Rel_D(TT, MISOS_DEVICE, "Передача устройств")
-    Rel_D(MISOS_DEVICE, AGR_SPB, "Передача устройств")
+    Rel_D(TT, MISOS_DEVICE, "Передача TMU с ПО")
+    Rel_D(MISOS_DEVICE, AGR_SPB, "ередача TMU с ПО")
 
-    Rel_R(AGR_KALUGA, AGR_SPB, "Договор на использование AGR-mobile")
-    Rel_L(AGR_KALUGA, AGR_SPB, "Договор на присоединение к телематической системе T-платформа AGR-mobile")
-    'Rel(AGR_KALUGA
-    'Rel(AGR_SPB
+    Rel_R(AGR_SPB, AGR_KALUGA, "Договор на использование AGR-mobile")
+    Rel_R(AGR_SPB, AGR_KALUGA, "Договор на присоединение к телематической системе T-платформа AGR-mobile")
 
     remove @unlinked
 
