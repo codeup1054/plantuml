@@ -10,28 +10,29 @@
       <b>Взаимодействие участников телематической системы "Цифровой автомобиль"</b>
     end title
 
+
 ' AGR
 
-    BiRel_R(AGR_SPB, TT, "02. Договоры на развитие платформы, сопровождение и техническую поддержку ")
     BiRel_R(AGR_SPB, TT, "01. Договор на проведение НИОКР, прототипирование, разработку и передачу РИД")
-    Rel(AGR_SPB, NTS_CRM, "03. Управление участниками")
-    Rel_D(AGR_SPB, NTS_PLATFORM_MANAGEMENT, "04. Управление платформой")
-    Rel_L(NTS_PLATFORM_MANAGEMENT, NTS_CRM,  "Управление доступом")
-    Rel_L(NTS_PLATFORM_MANAGEMENT, NTS_MOBILE,  "Учёт SIM-card")
-    Rel_D(NTS_MOBILE, MTA_DEVICE_PLANT,  "Выдача SIM-card")
+    BiRel_R(AGR_SPB, TT, "02. Договор на развитие платформы, сопровождение и техническую поддержку")
+    Rel(AGR_SPB, DC_PLATFORM_CRM, "03. Управление участниками")
+    Rel_D(AGR_SPB, DC_PLATFORM_MANAGEMENT, "04. Управление платформой")
+    Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_CRM,  "Управление доступом")
+    Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_MOBILE,  "Учёт SIM-card")
+    Rel_D(DC_PLATFORM_MOBILE, MTA_DEVICE_PLANT,  "Выдача SIM-card")
 
 '  Поставщик услуг
 
-    Rel_U(SERVICE_PROVIDER_EXT, NTS_PLATFORM_MANAGEMENT,  "Передача device_id", "API")
-    Rel_U(SERVICE_PROVIDER_EXT, NTS_CRM,  "05.Присоединение участника, отчеты", "API")
+    Rel_U(SERVICE_PROVIDER_EXT, DC_PLATFORM_MANAGEMENT,  "Передача device_id", "API")
+    Rel_U(SERVICE_PROVIDER_EXT, DC_PLATFORM_CRM,  "05.Присоединение участника, отчеты", "API")
     Rel_L(SERVICE_PROVIDER_EXT, MOBILE_APP_EXT, "Сервисы")
     Rel_D(SERVICE_PROVIDER_EXT, SERVICE_PROVIDER_DEVICES, "Device_id")
     BiRel_U(SERVICE_PROVIDER_GATE, SERVICE_PROVIDER_EXT, "service dataflow")
     Rel_D(SERVICE_PROVIDER_DEVICES, SERVICE_PROVIDER_CARS, "привязка VIN-Device_id")
     Rel_L(SERVICE_PROVIDER_CARS, SERVICE_PROVIDER_CLIENTS, "привязка VIN-Client")
 
-    Rel_U(MTA_DEVICE, NTS_TELEMATIC_GATE, "raw telematic data", "device_id")
-    Rel_R(NTS_TELEMATIC_GATE, NTS_PLATFORM_MANAGEMENT, "telematic data", "device_id, data")
+    Rel_U(MTA_DEVICE, DC_PLATFORM_TELEMATIC_GATE, "raw telematic data", "device_id")
+    Rel_R(DC_PLATFORM_TELEMATIC_GATE, DC_PLATFORM_MANAGEMENT, "telematic data", "device_id, data")
 
 
     Rel_U(SERVICE_PROVIDER_DEVICES, MTA_DEVICE , "управление", "настройка блока")
