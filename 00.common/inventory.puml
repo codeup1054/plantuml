@@ -14,7 +14,6 @@
 
 ' Пользовательские Приложения
 Container(MOBIKEY_APP, "Приложение Mobikey", "Клиентское приложение", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
-Container(MOBILE_APP_AGR, "Мобильное Приложение АГР", "Мониторинг, управленеие, сервисы", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
 Container(MOBIKEY_APP_GARAGE, "Экран выбора автомобиля ", "Перечень автомобилей клиента", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
 
 Container(MOBILITY_APP, "Приложение Mobility", "Приложение Мобилити", "ReactNative, iOS, Android", $sprite="mobile", $tags="main")
