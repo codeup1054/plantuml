@@ -12,7 +12,7 @@
 
 ' Системы
 
-System_Boundary(DC_PLATFORM_PLATFORM, "Платформа NTS") {
+System_Boundary(DC_PLATFORM_PLATFORM, "Платформа Цифрового автомобиля") {
 ContainerDb(DC_PLATFORM_CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="", $sprite="clickhouse")
 Container(DC_PLATFORM_API, "Интеграционная подсистема", "Шлюз для участников", "REST_API, AMQP", $tags="", $sprite="cog")
 Container(DC_PLATFORM_TELEMATIC_GATE, "Телематический шлюз", "Шлюз для телематических данных", "TCP, Redis", $tags="", $sprite="input")
@@ -21,26 +21,10 @@ Container(DC_PLATFORM_CRM, "Система управления участник
 Container(DC_PLATFORM_BILLING, "Система учета и тарификации", "Billing", "СУБД, web, backend", $tags="", $sprite="calculator")
 Container(DC_PLATFORM_MOBILE, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
 
-
-' Экземпляр 01
-
-
-    System_Boundary(DC_PLATFORM_FARM_INSTANCE_1, "NTS Instance 01", $tags=GroupBackgroundColor:gold") {
-    Container(DC_PLATFORM_1_TELEMATIC_GATE, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cogs")
-    Container(DC_PLATFORM_1_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
-    Container(DC_PLATFORM_1_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
-    Container(DC_PLATFORM_1_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
-    }
-
-' Экземпляр 02
-
-    System_Boundary(DC_PLATFORM_FARM_INSTANCE_2, "NTS Instance 02") {
-    Container(DC_PLATFORM_2_TELEMATIC_GATE, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cogs")
-    Container(DC_PLATFORM_2_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
-    Container(DC_PLATFORM_2_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
-    Container(DC_PLATFORM_2_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
-    }
-
+Container(DC_PLATFORM_1_TELEMATIC_GATE, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cogs")
+Container(DC_PLATFORM_1_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
+Container(DC_PLATFORM_1_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
+Container(DC_PLATFORM_1_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
 
 }
 
