@@ -1,4 +1,4 @@
-    @startuml Контекст интеграции
+@startuml Контекст интеграции
 
 ' !include https://gitlab.mobility.hyundai.ru/hml-public/plantuml/-/raw/master/common/inventory.puml
 
@@ -12,14 +12,13 @@
 
 ' НТС
 
-    BiRel_R(GLONASS_ORG, TESLAB, "01. Договор на проведение НИОКР, разработку и передачу РИД")
-    BiRel_R(GLONASS_ORG, TESLAB, "02. Договоры на развитие платформы, сопровождение и техническую поддержку ")
+    Rel_R(GLONASS_ORG, TESLAB, "01. Договор на проведение НИОКР, разработку и передачу РИД")
+    Rel_R(GLONASS_ORG, TESLAB, "02. Договоры на развитие платформы, сопровождение и техническую поддержку ")
     Rel(GLONASS_ORG, NTS_CRM, "03. Управление участниками")
     Rel_D(GLONASS_ORG, NTS_PLATFORM_MANAGEMENT, "04. Управление платформой")
     Rel_L(NTS_PLATFORM_MANAGEMENT, NTS_CRM,  "Управление доступом")
     Rel_L(NTS_PLATFORM_MANAGEMENT, NTS_MOBILE,  "Учёт SIM-card")
     Rel_D(NTS_MOBILE, MTA_DEVICE_PLANT,  "Выдача SIM-card")
-
 
 '  Поставщик услуг
 
@@ -33,7 +32,6 @@
 
     Rel_U(MTA_DEVICE, NTS_TELEMATIC_GATE, "raw telematic data", "device_id")
     Rel_R(NTS_TELEMATIC_GATE, NTS_PLATFORM_MANAGEMENT, "telematic data", "device_id, data")
-
 
     Rel_U(SERVICE_PROVIDER_DEVICES, MTA_DEVICE , "управление", "настройка блока")
     Rel_L(MTA_DEVICE_PLANT, MTA_DEVICE , "API", "настройка шлюза NTS")
