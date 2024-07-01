@@ -27,7 +27,7 @@
 
     Rel_U(DC_PLATFORM_BILLING, DC_PLATFORM_MANAGEMENT,  "Передача device_id", "API")
     Rel_U(DC_PLATFORM_BILLING, DC_PLATFORM_CRM_B2B,  "05.Присоединение участника, отчеты", "API")
-    Rel_R(DC_MOBILE_APP, DC_PLATFORM_BILLING, "Сервисы")
+    Rel_R(DC_MOBILE_APP, DC_PLATFORM_MARKETPLACE, "Сервисы")
     Rel_D(DC_PLATFORM_BILLING, DC_PLATFORM_DEVICES, "Device_id")
     BiRel_U(DC_PLATFORM_SERVICE_PROVIDER_GATE, DC_PLATFORM_BILLING, "service dataflow")
     Rel_D(DC_PLATFORM_DEVICES, DC_PLATFORM_CAR, "привязка VIN-Device_id")
