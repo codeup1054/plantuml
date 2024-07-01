@@ -17,16 +17,15 @@ ContainerDb(DC_PLATFORM_CLICKHOUSE_DB, "ClickHouse", "Колоночная ан�
 Container(DC_PLATFORM_API, "Интеграционная подсистема", "Шлюз для участников", "REST_API, AMQP", $tags="", $sprite="cog")
 'Container(DC_PLATFORM_TELEMATIC_GATE, "Телематический шлюз", "Шлюз для телематических данных", "TCP, Redis", $tags="", $sprite="input")
 Container(DC_PLATFORM_TELEMATIC_GATE, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cogs")
-
-Container(DC_PLATFORM_MOBILE, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
+Container(DC_PLATFORM_MOBILE_NETWORK, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
 Container(DC_PLATFORM_CRM_B2B, "Система управления участниками", "CRM B2B", "СУБД, web, backend", $tags="", $sprite="people_group")
 
+
     System_Boundary(DC_PLATFORM_PLATFORM, "Cистема Управления платформой Цифрового автомобиля") {
-        Container(DC_PLATFORM_BILLING, "Система учета и тарификации", "Billing", "СУБД, web, backend", $tags="", $sprite="calculator")
         Container(DC_PLATFORM_MANAGEMENT, "Система управления платформой", "Мониторинг и управление данными", "СУБД, web, backend", $tags="", $sprite="cogs")
         Container(DC_PLATFORM_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
         Container(DC_PLATFORM_SERVICE_PROVIDER_GATE, "Система управление интеграциями", "Поставщики сервисов", "REST_API", $sprite="calculator", $tags="gold")
-        Container(DC_PLATFORM_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
+        Container(DC_PLATFORM_BILLING, "Система учета и тарификации", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
         Container(DC_PLATFORM_CAR, "Каталог автгомобилей", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
         Container(DC_PLATFORM_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
         Container(DC_PLATFORM_DEVICES, "Каталог TU", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
