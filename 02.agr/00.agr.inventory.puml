@@ -12,7 +12,7 @@
 
 ' Системы
 
-System_Boundary(DC_PLATFORM_PLATFORM, "Платформа Цифрового автомобиля") {
+System_Boundary(DC_PLATFORM_PLATFORM, "Платформа <Цифрового автомобиля>") {
 ContainerDb(DC_PLATFORM_CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="", $sprite="clickhouse")
 Container(DC_PLATFORM_API, "Интеграционная подсистема", "Шлюз для участников", "REST_API, AMQP", $tags="", $sprite="cog")
 Container(DC_PLATFORM_TELEMATIC_GATE, "Телематический шлюз", "Шлюз для телематических данных", "TCP, Redis", $tags="", $sprite="input")
