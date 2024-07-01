@@ -16,7 +16,7 @@ System_Boundary(DC_PLATFORM_PLATFORM, "Платформа NTS") {
 ContainerDb(DC_PLATFORM_CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="", $sprite="clickhouse")
 Container(DC_PLATFORM_API, "Интеграционная подсистема", "Шлюз для участников", "REST_API, AMQP", $tags="", $sprite="cog")
 Container(DC_PLATFORM_TELEMATIC_GATE, "Телематический шлюз", "Шлюз для телематических данных", "TCP, Redis", $tags="", $sprite="input")
-Container(DC_PLATFORM_PLATFORM_MANAGEMENT, "Система управления платформой", "Мониторинг и управление данными", "СУБД, web, backend", $tags="", $sprite="cogs")
+Container(DC_PLATFORM_MANAGEMENT, "Система управления платформой", "Мониторинг и управление данными", "СУБД, web, backend", $tags="", $sprite="cogs")
 Container(DC_PLATFORM_CRM, "Система управления участниками", "CRM B2B", "СУБД, web, backend", $tags="", $sprite="people_group")
 Container(DC_PLATFORM_BILLING, "Система учета и тарификации", "Billing", "СУБД, web, backend", $tags="", $sprite="calculator")
 Container(DC_PLATFORM_MOBILE, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
