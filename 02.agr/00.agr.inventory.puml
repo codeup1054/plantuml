@@ -20,7 +20,7 @@ Container(DC_PLATFORM_TELEMATIC_GATE, "-Каталог ТU\n- Шлюз TD\n- С�
 Container(DC_PLATFORM_MOBILE_NETWORK, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
 Container(DC_PLATFORM_CRM_B2B, "Система управления участниками", "CRM B2B", "СУБД, web, backend", $tags="", $sprite="people_group")
 
-    System_Boundary(DC_PLATFORM_PLATFORM_MANAGEMENT, "Cистема Управления платформой Цифрового автомобиля") {
+    System_Boundary(DC_PLATFORM_MANAGEMENT, "Cистема Управления платформой Цифрового автомобиля") {
         Container(DC_PLATFORM_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
         Container(DC_PLATFORM_SERVICE_PROVIDER_GATE, "Система управление интеграциями", "Поставщики сервисов", "REST_API", $sprite="calculator", $tags="gold")
         Container(DC_PLATFORM_BILLING, "Система учета и тарификации", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")

@@ -17,10 +17,9 @@
     Rel(AGR_SPB, DC_PLATFORM_CRM_B2B, "03. Управление участниками")
     Rel_D(CAR_DEALER, DC_PLATFORM_CRM_B2B, "API", "права доступа")
 
-
     Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_CRM_B2B,  "Управление доступом")
     Rel_D(AGR_SPB, DC_PLATFORM_MANAGEMENT, "04. Управление платформой")
-    Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_MOBILE,  "Учёт SIM-card")
+    Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_MOBILE_NETWORK,  "Учёт SIM-card")
     Rel_D(DC_PLATFORM_MOBILE_NETWORK, MTA_DEVICE_PLANT,  "Выдача SIM-card")
 
 '  Система управления платформой
