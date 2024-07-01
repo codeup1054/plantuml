@@ -22,6 +22,7 @@ LAYOUT_TOP_DOWN()
     Rel_L(NTS_CRM, NTS_PLATFORM_MANAGEMENT, "02.Конфигрураця экземпляра")
     Rel_R(NTS_CRM, NTS_BILLING,  "03. Начисления, платежи")
 
+
     Rel_D(NTS_PLATFORM_MANAGEMENT, NTS_FARM_INSTANCE_1,  "Управление экземпляром'")
     Rel_D(NTS_PLATFORM_MANAGEMENT, NTS_FARM_INSTANCE_2,  "Управление экземпляром")
 
