@@ -14,16 +14,17 @@
 
     BiRel_R(AGR_SPB, TT, "1. Договор на проведение НИОКР, прототипирование, разработку РИД")
     BiRel_R(AGR_SPB, TT, "2. Договор на развитие платформы, сопровождение и техническую поддержку")
-    Rel(AGR_SPB, DC_PLATFORM_CRM, "03. Управление участниками")
+    Rel(AGR_SPB, DC_PLATFORM_CRM_B2B, "03. Управление участниками")
+    Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_CRM_B2B,  "Управление доступом")
     Rel_D(AGR_SPB, DC_PLATFORM_MANAGEMENT, "04. Управление платформой")
-    Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_CRM,  "Управление доступом")
     Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_MOBILE,  "Учёт SIM-card")
     Rel_D(DC_PLATFORM_MOBILE, MTA_DEVICE_PLANT,  "Выдача SIM-card")
 
-'  Поставщик услуг
+
+'  Система управления платформой
 
     Rel_U(SERVICE_PROVIDER_EXT, DC_PLATFORM_MANAGEMENT,  "Передача device_id", "API")
-    Rel_U(SERVICE_PROVIDER_EXT, DC_PLATFORM_CRM,  "05.Присоединение участника, отчеты", "API")
+    Rel_U(SERVICE_PROVIDER_EXT, DC_PLATFORM_CRM_B2B,  "05.Присоединение участника, отчеты", "API")
     Rel_L(SERVICE_PROVIDER_EXT, MOBILE_APP_EXT, "Сервисы")
     Rel_D(SERVICE_PROVIDER_EXT, SERVICE_PROVIDER_DEVICES, "Device_id")
     BiRel_U(SERVICE_PROVIDER_GATE, SERVICE_PROVIDER_EXT, "service dataflow")
