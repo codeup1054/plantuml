@@ -1,3 +1,4 @@
+@startuml styles
 !define DEVICONS https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/icons
 
 !include DEVICONS/rabbitmq_original.puml
@@ -73,3 +74,4 @@ AddElementTag("rabbitmq_original", $sprite="rabbitmq_original,scale=0.7", $shape
 AddElementTag("electron_original", $shape=RoundedBoxShape(), $bgColor="#344755", $sprite="electron_original,scale=0.7")
 AddElementTag("system_software", $bgColor="#0194C2", $borderColor="#00AE86")
 
+@enduml
