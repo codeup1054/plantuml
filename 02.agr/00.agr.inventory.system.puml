@@ -1,0 +1,16 @@
+@startuml  ### [C4] Участники
+
+   !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+   !include https://gitlab.tes.store/tes-public/plantuml/-/raw/master/00.common/puml_styles.puml
+
+
+    skinparam linetype polyline
+    HIDE_STEREOTYPE()
+    SHOW_PERSON_PORTRAIT()
+    LAYOUT_TOP_DOWN()
+
+Person(AGR_INSTALLER,"Монтажник АГР", "Установка электрооборудования")
+Person(TTM_TESTER,"Тестировщик ТТМ", "Проверка брака")
+
+
+@enduml
