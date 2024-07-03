@@ -14,84 +14,8 @@
 ' Пользовательские Приложения
 
 ' Системы
-
-System_Boundary(NTS_PLATFORM, "Платформа NTS") {
-ContainerDb(NTS_CLICKHOUSE_DB, "ClickHouse", "Колоночная аналитическая СУБД", "SQL", $tags="", $sprite="clickhouse")
-Container(NTS_API, "Интеграционная подсистема", "Шлюз для участников", "REST_API, AMQP", $tags="", $sprite="cog")
-Container(NTS_TELEMATIC_GATE, "Телематический шлюз", "Шлюз для телематических данных", "TCP, Redis", $tags="", $sprite="input")
-Container(NTS_PLATFORM_MANAGEMENT, "Система управления платформой", "Мониторинг и управление данными", "СУБД, web, backend", $tags="", $sprite="cogs")
-Container(NTS_CRM, "Система управления участниками", "CRM B2B", "СУБД, web, backend", $tags="", $sprite="people_group")
-Container(NTS_BILLING, "Система учета и тарификации", "Billing", "СУБД, web, backend", $tags="", $sprite="calculator")
-Container(NTS_MOBILE, "Система обеспечения связи", "TCP,GPRS", "SIM-card", $tags="", $sprite="cogs")
-
-' Экземпляр 01
-
-
-    System_Boundary(NTS_FARM_INSTANCE_1, "NTS Instance 01", $tags=GroupBackgroundColor:gold") {
-    Container(NTS_1_TELEMATIC_GATE, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cogs")
-    Container(NTS_1_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
-    Container(NTS_1_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
-    Container(NTS_1_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
-    }
-
-' Экземпляр 02
-
-    System_Boundary(NTS_FARM_INSTANCE_2, "NTS Instance 02") {
-    Container(NTS_2_TELEMATIC_GATE, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cogs")
-    Container(NTS_2_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
-    Container(NTS_2_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
-    Container(NTS_2_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
-    }
-
-
-}
-
-
-
-System_Boundary(TDO_1, "TDO Участник 1") {
-    Container(TDO_1_TELEMATIC_GATE_1, "-Каталог ТU\n- Шлюз TD\n- Система хранения TD\n- Система управления командами", "Телематический сервис", "TCP, Redis", $tags="", $sprite="cog")
-    Container(TDO_1_BILLING, "Услуги, биллинг", "Оператор сервиса", "REST_API", $sprite="calculator", $tags="gold")
-    Container(TDO_1_CRM, "Система управление клиентами", "ФЗ-152", "СУБД, DMZ", $sprite="people_group", $tags="critical")
-    Container(TDO_1_MARKETPLACE, "- Маркетплейс\n- Система каталогов\n- Backend МП", "Сервисная платформа", "REST_API", $sprite="cogs", $tags="gold")
-}
-
-
-
-
-' Внешние провайдеры сервисов
-
-
-'Компании, Организации
-
-Container(GLONASS_ORG, "GLONASS", "Оператор телематических данных", "GLONASS", $sprite="electron_original", $tags="main")
-
-Container(MTA_DEVICE_PLANT, "Производитель TU", "Блоки телематики, IoT", "REST_API", $sprite="mta", $tags="external")
-Container(MTA_DEVICE_PLANT_1, "Производитель TU 1", "Блоки телематики, IoT", "REST_API", $sprite="mta", $tags="external")
-Container(MTA_DEVICE_PLANT_2, "Производитель TU 2", "Блоки телематики, IoT", "REST_API", $sprite="mta", $tags="external")
-
-Container(CAR_PLANT, "Производитель", "Автомобили", "REST_API", $sprite="car_side", $tags="external")
-Container(CAR_DEALER, "Дилер", "Сервисный центр", "REST_API", $sprite="car_side", $tags="external")
-
-' Базы данных
-
-' Пользователи приложений, клиенты
-
-' Пользователи CRM
-
-' Разработка
-
-' Шаги процесса
-
-'Container(RENT_KYC, "RENT_KYC", "Проверка KYC", "", $tags="step")
-
-' Процессы
-
-'System_Boundary(PAYMENT_PROCC, "Процесс оплаты") {
-'Container(_CARD_LINK, "CARD_LINK", "", "", $tags="step")
-'Container(_CARD_PAY, "CARD_PAY", "", "", $tags="step")
-'Container(_CARD_REVERSE, "CARD_REVERSE", "", "", $tags="step")
-'Container(_CARD_CHECK, "CARD_CHECK", "", "", $tags="step")
-'}
+Person(AGR_INSTALLER,"Монтажник АГР", "Установка электрооборудования")
+Person(TTM_TESTER,"Тестировщик ТТМ", "Проверка брака")
 
 
 @enduml
