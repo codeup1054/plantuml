@@ -19,14 +19,14 @@
 
     Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_CRM_B2B,  "Управление доступом")
     Rel_D(AGR_SPB, DC_PLATFORM_MANAGEMENT, "04. Управление платформой")
-    Rel_L(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_MOBILE_NETWORK,  "Учёт SIM-card")
-    Rel_D(DC_PLATFORM_MOBILE_NETWORK, MTA_DEVICE_PLANT,  "Выдача SIM-card")
+    BiRel_R(DC_PLATFORM_MANAGEMENT, DC_PLATFORM_MOBILE_NETWORK,  "Учёт SIM-card")
+    
 
 '  Система управления платформой
 
-    Rel_U(DC_PLATFORM_BILLING, DC_PLATFORM_MANAGEMENT,  "Передача device_id", "API")
+
     Rel_U(DC_PLATFORM_MARKETPLACE, DC_PLATFORM_CRM_B2B,  "05.Присоединение участника, отчеты", "API")
-    Rel_R(DC_MOBILE_APP, DC_PLATFORM_MARKETPLACE, "Сервисы")
+    Rel_D(DC_MOBILE_APP, DC_PLATFORM_MARKETPLACE, "Сервисы")
     Rel_R(DC_PLATFORM_BILLING, DC_PLATFORM_MARKETPLACE, "Сервисы")
     Rel_D(DC_PLATFORM_BILLING, DC_PLATFORM_DEVICES, "Device_id")
     BiRel_U(DC_PLATFORM_SERVICE_PROVIDER_GATE, DC_PLATFORM_BILLING, "service dataflow")
@@ -39,7 +39,6 @@
 
 
     Rel_U(DC_PLATFORM_DEVICES, MTA_DEVICE , "управление", "настройка блока")
-    Rel_L(MTA_DEVICE_PLANT, MTA_DEVICE , "API", "настройка шлюза NTS")
     Rel_L(CAR_PLANT, DC_PLATFORM_CAR, "API", "связь VIN и device_id")
 
 
